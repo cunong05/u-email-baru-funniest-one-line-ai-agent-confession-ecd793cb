@@ -3,10 +3,14 @@ const ENTRY: string =
 
 const MAX_ENTRY_LENGTH = 200;
 
-if (ENTRY.length > MAX_ENTRY_LENGTH) {
-  throw new Error(
-    `Entry exceeds maximum length of ${MAX_ENTRY_LENGTH} characters (got ${ENTRY.length}).`
-  );
+function assertEntryValid(entry: string): void {
+  if (entry.length > MAX_ENTRY_LENGTH) {
+    throw new Error(
+      `Entry is too long: it is ${entry.length} characters, but the maximum allowed length is ${MAX_ENTRY_LENGTH} characters.`
+    );
+  }
 }
+
+assertEntryValid(ENTRY);
 
 process.stdout.write(ENTRY);
